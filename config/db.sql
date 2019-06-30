@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2019 at 01:54 PM
+-- Generation Time: Jun 30, 2019 at 04:31 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -21,6 +21,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `daily_scrum`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` varchar(30) NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `description`, `status`) VALUES
+('WEB-2019', 'final project', 'in progress');
 
 -- --------------------------------------------------------
 
