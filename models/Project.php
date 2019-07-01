@@ -2,16 +2,13 @@
 
 class Project 
 {
-    private $name;
-    private $description;
-
-    public function create()
+    public function create($name, $description)
     {
         $sql = "INSERT INTO project (name, description) VALUES (:name, :description)";
         $req = Database::getConnection()->prepare($sql);
         return $req->execute([
-            'name' => $this->name,
-            'description' => $this->description,
+            'name' => $name,
+            'description' => $description,
         ]);
     }
     public function getProjectById($name)
@@ -46,45 +43,4 @@ class Project
     //     return $req->execute([$id]);
     // }
     
-
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
     }
-
-    /**
-     * Set the value of name
-     *
-     * @return  self
-     */ 
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of description
-     */ 
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set the value of description
-     *
-     * @return  self
-     */ 
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-}
-?>
