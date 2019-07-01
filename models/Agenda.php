@@ -17,4 +17,11 @@ class Agenda
             'problems' => $problems
         ]);
     }
+
+    public function getAll()
+    {
+        $query = 'SELECT username, date, yesterday, today, problems FROM agenda';
+        $stmt = DbConnector::getConnection()->prepare($query);
+        return $stmt->fetchAll();
+    }
 }
