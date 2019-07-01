@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2019 at 04:31 PM
+-- Generation Time: Jul 01, 2019 at 06:13 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -25,21 +25,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tasks`
+-- Table structure for table `agenda`
 --
 
-CREATE TABLE `tasks` (
-  `id` varchar(30) NOT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `status` varchar(20) DEFAULT NULL
+CREATE TABLE `agenda` (
+  `id` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `date` date NOT NULL,
+  `yesterday` varchar(300) NOT NULL,
+  `today` varchar(300) NOT NULL,
+  `problems` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tasks`
+-- Table structure for table `project`
 --
 
-INSERT INTO `tasks` (`id`, `description`, `status`) VALUES
-('WEB-2019', 'final project', 'in progress');
+CREATE TABLE `project` (
+  `name` varchar(50) NOT NULL,
+  `description` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -50,15 +57,59 @@ INSERT INTO `tasks` (`id`, `description`, `status`) VALUES
 CREATE TABLE `users` (
   `username` varchar(20) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `email` varchar(30) NOT NULL
+  `email` varchar(30) NOT NULL,
+  `project_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Indexes for dumped tables
 --
 
-INSERT INTO `users` (`username`, `password`, `email`) VALUES
-('veronika', 'veronika', 'veronika@abv.bg');
+--
+-- Indexes for table `agenda`
+--
+ALTER TABLE `agenda`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_fk` (`username`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`name`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`username`),
+  ADD KEY `project_fk` (`project_name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `agenda`
+--
+ALTER TABLE `agenda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `agenda`
+--
+ALTER TABLE `agenda`
+  ADD CONSTRAINT `user_fk` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `project_fk` FOREIGN KEY (`project_name`) REFERENCES `project` (`name`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
