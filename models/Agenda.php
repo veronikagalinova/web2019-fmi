@@ -20,9 +20,13 @@ class Agenda
 
     public function getAll()
     {
-
-        $query = "SELECT * FROM agenda";
-        $stmt = DbConnector::getConnection()->prepare($query);
-        return $stmt->execute();
+        try {
+            $query = "SELECT * FROM agenda";
+            $stmt = DbConnector::getConnection()->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $exception) {
+            echo ['error' => $exception->getMessage()];
+        }
     }
 }

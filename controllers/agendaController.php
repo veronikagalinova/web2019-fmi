@@ -7,7 +7,6 @@ class agendaController extends Controller
         $agenda = new Agenda();
         $agenda->create("veronika", date('2019-07-01'), 'a', 'b', 'c');
         $data['agenda'] = $agenda->getAll();
-        print_r($data['agenda']);
         $this->set($data);
         $this->render("index");
     }

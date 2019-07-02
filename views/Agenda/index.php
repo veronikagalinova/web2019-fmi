@@ -6,17 +6,22 @@
 
             <tr>
                 <th>ID</th>
-                <th>Task</th>
-                <th>Description</th>
-                <th class="text-center">Action</th>
+                <th>Username</th>
+                <th>Date</th>
+                <th>Yesterday</th>
+                <th>Today</th>
+                <th>Problems</th>
             </tr>
         </thead>
         <?php
         foreach ($agenda as $a) {
             echo '<tr>';
             echo "<td>" . $a['id'] . "</td>";
+            echo "<td>" . $a['username'] . "</td>";
+            echo "<td>" . $a['date'] . "</td>";
             echo "<td>" . $a['yesterday'] . "</td>";
             echo "<td>" . $a['today'] . "</td>";
+            echo "<td>" . $a['problems'] . "</td>";
             echo "</tr>";
         }
         ?>

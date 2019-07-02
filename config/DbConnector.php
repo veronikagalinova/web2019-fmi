@@ -33,7 +33,6 @@ class DbConnector
                 self::$conn->exec("set names utf8");
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                echo 'Papaya';
             } catch (Exception $e) {
                 echo 'Exception -> ';
                 var_dump($e->getMessage());
