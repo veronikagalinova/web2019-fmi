@@ -8,10 +8,10 @@ class Agenda
     {
         $sql = "INSERT INTO agenda (username, date, yesterday, today, problems) 
         VALUES (:username, :date, :yesterday, :today, :problems)";
-        $req = Database::getBdd()->prepare($sql);
+        $req = DbConnector::getConnection()->prepare($sql);
         return $req->execute([
             'username' => $username,
-            'date' => $$date,
+            'date' => $date,
             'yesterday' => $yesterday,
             'today' => $today,
             'problems' => $problems
@@ -20,8 +20,9 @@ class Agenda
 
     public function getAll()
     {
-        $query = 'SELECT * FROM agenda';
+
+        $query = "SELECT * FROM agenda";
         $stmt = DbConnector::getConnection()->prepare($query);
-        return $stmt->fetchAll();
+        return $stmt->execute();
     }
 }

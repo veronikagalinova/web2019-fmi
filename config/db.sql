@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2019 at 06:13 PM
+-- Generation Time: Jul 02, 2019 at 07:47 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -37,6 +37,13 @@ CREATE TABLE `agenda` (
   `problems` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `agenda`
+--
+
+INSERT INTO `agenda` (`id`, `username`, `date`, `yesterday`, `today`, `problems`) VALUES
+(1, 'veronika', '2019-07-02', 'create routing', 'create task view', 'db class');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +54,14 @@ CREATE TABLE `project` (
   `name` varchar(50) NOT NULL,
   `description` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`name`, `description`) VALUES
+('HCI', NULL),
+('WEB', NULL);
 
 -- --------------------------------------------------------
 
@@ -60,6 +75,14 @@ CREATE TABLE `users` (
   `email` varchar(30) NOT NULL,
   `project_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `password`, `email`, `project_name`) VALUES
+('lyuboslav', 'lyuboslav', 'lyuboslav@abv.bg', 'WEB'),
+('veronika', 'veronika', 'veronika@abv.bg', 'WEB');
 
 --
 -- Indexes for dumped tables
@@ -93,7 +116,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
