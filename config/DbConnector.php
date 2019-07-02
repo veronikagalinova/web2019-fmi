@@ -5,7 +5,7 @@ class DbConnector
     private static $db_name = "daily_scrum";
     private static $username = "root";
     private static $password = "";
-    private static $conn=null;
+    private static $conn = null;
 
     // public function getConnection()
     // {
@@ -23,13 +23,13 @@ class DbConnector
 
     //     return $this->conn;
     // }
-    public static function getConnection() {
-        if(is_null(self::$conn)) {
-            try
-            {
-                self::$conn = new PDO("mysql:host=" . $host . ";dbname=" . $db_name,$username,$password);
-            }
-            catch (PDOException $exception) {
+    public static function getConnection()
+    {
+        if (is_null(self::$conn)) {
+            try {
+                self::$conn = new PDO("mysql:host=" . self::$host .
+                    ";dbname=" . self::$db_name, self::$username, self::$password);
+            } catch (PDOException $exception) {
                 echo "Connection error: " . $exception->getMessage();
             }
         }

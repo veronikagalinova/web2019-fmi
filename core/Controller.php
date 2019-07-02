@@ -2,6 +2,7 @@
 class Controller
 {
     var $elements = [];
+    var $layout = "default";
 
     function set($data)
     {
@@ -10,8 +11,10 @@ class Controller
 
     function render($filename)
     {
-        extract($this->vars);
+
+        extract($this->elements);
         // това ще отговаря за динамичната смяна на вютата
+
         ob_start();
         // в името на класа премахва низът `Controller` и прави първата буква главна 
         // така от agendaController ще отидем във views/Agenda/подадения файл.php
@@ -19,10 +22,10 @@ class Controller
         // запазва в буфер даденото съдържание
         $content_for_layout = ob_get_clean();
 
-        // if ($this->layout == false) { още нз каква е ролята на тази променлива .. може и да няма значение този иф в туториала
-        $content_for_layout;
-        // } else {
-        // require(ROOT . "Views/Layouts/" . $this->layout . '.php');
-        // }
+        if ($this->layout == false) {
+            $content_for_layout;
+        } else {
+            require(ROOT . "views/Layouts/" . $this->layout . '.php');
+        }
     }
 }

@@ -20,7 +20,7 @@ class Agenda
 
     public function getAll()
     {
-        $query = 'SELECT username, date, yesterday, today, problems FROM agenda';
+        $query = 'SELECT * FROM agenda';
         $stmt = DbConnector::getConnection()->prepare($query);
         return $stmt->fetchAll();
     }
