@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 class agendaController extends Controller
 {
     function index()
@@ -12,20 +14,23 @@ class agendaController extends Controller
 
     function create()
     {
-        echo "asdf";
+        require(ROOT . 'models/Agenda.php');
+        $agenda = new Agenda();
+        $user =  $_SESSION['username'];
+        if ($agenda->getTodaysAgenda() == true) {
+            header("Location: " . WEBROOT . "agenda/index");
+        }
+
         if (isset($_POST["create-agenda"])) {
-            require(ROOT . 'models/Agenda.php');
-            echo "I am in";
-            $agenda = new Agenda();
-            // if ($agenda->create(
-            //     $_POST["username"],
-            //     $_POST["date"],
-            //     $_POST["yesterday"],
-            //     $_POST["today"],
-            //     $_POST["problems"]
-            // )) {
-            //     header("Location: " . WEBROOT . "agenda/index");
-            // }
+            if ($agenda->create(
+                $user,
+                date('Y-m-d'),
+                $_POST["yesterday"],
+                $_POST["today"],
+                $_POST["problems"]
+            )) {
+                header("Location: " . WEBROOT . "agenda/index");
+            }
         }
         $this->render("create");
     }

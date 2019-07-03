@@ -28,5 +28,11 @@
         ?>
 
     </table>
-    <a href="/daily-scrum/agenda/create/" class="btn btn-primary btn-xs pull-right"><b>+</b> Add agenda for today</a>
+    <button onclick="window.location.href='/daily-scrum/agenda/create/'" class="btn btn-primary btn-xs pull-right" <?php
+                                                                                                                    $agenda = new Agenda();
+                                                                                                                    if ($agenda->getTodaysAgenda() == true) {
+                                                                                                                        echo 'disabled=true';
+                                                                                                                    }
+                                                                                                                    ?>><b>+</b> Add agenda for today</button>
+
 </div>

@@ -21,4 +21,5 @@ FIX:
 -move bootstrap cdn/js to layout page
 -home page for logged/registered user when he is not in project
 -think about security - CMON DUDE... ATLEAST HASH THE PASSWORDS
+-notificaation if insertion is successfull
 

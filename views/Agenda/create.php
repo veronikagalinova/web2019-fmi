@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
         <label for="today">Today:</label>
-        <input type="text" class="form-control" id="today" placeholder="Enter today's tasks" name="description">
+        <input type="text" class="form-control" id="today" placeholder="Enter today's tasks" name="today">
     </div>
     <div class="form-group">
         <label for="problems">Problems:</label>
