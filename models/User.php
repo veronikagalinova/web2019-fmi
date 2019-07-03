@@ -5,12 +5,13 @@ class User
 
     public function create($username, $password, $email)
     {
-        $sql = "INSERT INTO users (username, password,email) VALUES (:username, :password, :email)";
+        $sql = "INSERT INTO users (username, password, email, project_name) VALUES (:username, :password, :email, :project_name)";
         $req = DbConnector::getConnection()->prepare($sql);
         return $req->execute([
             'username' => $username,
             'password' => $password,
-            'email' => $email
+            'email' => $email,
+            'project_name' => 'WEB'
         ]);
     }
     public function getUserByUsername($username)
