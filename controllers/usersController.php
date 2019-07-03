@@ -13,7 +13,7 @@ class usersController extends Controller
             $username = $_POST['username'];
             $password = $_POST['password'];
             $email = $_POST['email'];
-
+            $errMsg = '';
             if($username == '') {
                 $errMsg = 'Enter username';
             }
@@ -27,7 +27,15 @@ class usersController extends Controller
             if($errMsg == ''){
                 //somewhat of a valid form
                 //TODO: need to check for existing user
-                $user->create($username, $password, $email);
+                if($user->getUserByUsername($username)==true) {
+                    echo '<h1>User already exists</h1>';
+                    //header("Location: " . WEBROOT . "users/login");  this works
+                }
+                else
+                {
+                    $user->create($username, $password, $email);
+                    
+                }
                 //TODO: maybe think about how to login him right here
             }
         }
