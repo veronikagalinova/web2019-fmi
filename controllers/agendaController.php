@@ -1,11 +1,11 @@
 <?php
 session_start();
+require(ROOT . 'models/Agenda.php');
 
 class agendaController extends Controller
 {
     function index()
     {
-        require(ROOT . 'models/Agenda.php');
         $agenda = new Agenda();
         $data['agenda'] = $agenda->getTodaysAgenda();
         $this->set($data);
@@ -14,7 +14,6 @@ class agendaController extends Controller
 
     function create()
     {
-        require(ROOT . 'models/Agenda.php');
         $agenda = new Agenda();
         $user =  $_SESSION['username'];
         if ($agenda->getTodaysAgenda() == true) {
@@ -33,5 +32,14 @@ class agendaController extends Controller
             }
         }
         $this->render("create");
+    }
+
+    function myHistory()
+    {
+        $agenda = new Agenda();
+        $user =  $_SESSION['username'];
+        $data['myHistory'] = $agenda->getHistoryForUser($user);
+        $this->set($data);
+        $this->render("myHistory");
     }
 }
