@@ -32,7 +32,10 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="users/register">Register <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/daily-scrum/users/register">Register <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/daily-scrum/users/login">Login<span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>

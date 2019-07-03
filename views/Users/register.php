@@ -12,7 +12,7 @@
 <form method="post" action="" class="container">
 <div class="form-group">
     <label for="exampleInputEmail1">Username</label>
-    <input type="email" class="form-control" id="email" name="username" placeholder="Enter username">
+    <input type="text" class="form-control" id="email" name="username" placeholder="Enter username">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
