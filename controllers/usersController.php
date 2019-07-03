@@ -61,4 +61,3 @@ class usersController extends Controller
     }
     
 }
-?>

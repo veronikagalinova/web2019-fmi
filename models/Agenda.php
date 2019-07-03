@@ -18,6 +18,19 @@ class Agenda
         ]);
     }
 
+    public function getTodaysAgenda()
+    {
+        try {
+            $today = date("Y-m-d");
+            $query = "SELECT * FROM agenda WHERE DATE(`date`) = " . "'$today'";
+            $stmt = DbConnector::getConnection()->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $exception) {
+            echo ['error' => $exception->getMessage()];
+        }
+    }
+
     public function getAll()
     {
         try {
