@@ -33,6 +33,7 @@
                                                                                                                     if ($agenda->getTodaysAgenda() == true) {
                                                                                                                         echo 'disabled=true';
                                                                                                                     }
+
                                                                                                                     ?>><b>+</b> Add agenda for today</button>
 
 </div>

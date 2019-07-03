@@ -30,11 +30,8 @@ class usersController extends Controller
                     //header("Location: " . WEBROOT . "users/login");  this works
                 } else {
                     $user->create($username, $password, $email);
-<<<<<<< Updated upstream
-=======
                     $_SESSION['username'] = $user->username;
                     header("Location: " . WEBROOT . "agenda/index");
->>>>>>> Stashed changes
                 }
                 //TODO: maybe think about how to login him right here
             }
@@ -65,13 +62,10 @@ class usersController extends Controller
         }
         $this->render("login");
     }
-<<<<<<< Updated upstream
-=======
     function logout()
     {
         unset($_SESSION['username']);
         session_destroy();
-	    header("Location: " . WEBROOT . "users/login");
+        header("Location: " . WEBROOT . "users/login");
     }
->>>>>>> Stashed changes
 }
