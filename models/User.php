@@ -15,10 +15,10 @@ class User
     }
     public function getUserByUsername($username)
     {
-        $sql = "SELECT username FROM users WHERE username =" . "'$username'";
+        $sql = "SELECT * FROM users WHERE username =" . "'$username'";
         $req = DbConnector::getConnection()->prepare($sql);
         $req->execute();
-        return $req->fetch();
+        return $req->fetchObject();
     }
     public function getAllUsers()
     {

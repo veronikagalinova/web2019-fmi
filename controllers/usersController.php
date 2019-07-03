@@ -44,14 +44,13 @@ class usersController extends Controller
 
     function login()
     {
-        echo 'entered LOGIN in users controller';
-
+        // Do something if someone is already logged
+        
         require(ROOT . 'models/User.php');
         $userModel = new User();
         if(isset($_POST['login'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            
             $user=$userModel->getUserByUsername($username);
             if($user == false)
             {
@@ -59,8 +58,9 @@ class usersController extends Controller
             }
             else
             {
-                if($password == $user['password']) {
-                    $_SESSION['username'] = $data['username'];
+                if($password == $user->password) {
+                    $_SESSION['username'] = $user->username;
+                    header("Location: " . WEBROOT . "agenda/index");
                     // header('Location: dashboard.php');
                 }
             }

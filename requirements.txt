@@ -17,5 +17,7 @@ Projects
      - View agenda history for his project (only his records)
 
 FIX:
-
+-Figure out how to filter the navigation based ot logged user
 -move bootstrap cdn/js to layout page
+-think about security - CMON DUDE... ATLEAST HASH THE PASSWORDS
+

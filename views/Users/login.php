@@ -11,11 +11,11 @@
 <body>
 <form method="post" action="">
 <div class="form-group">
-    <label for="exampleInputEmail1">Username</label>
-    <input type="email" class="form-control" id="email" name="username" placeholder="Enter username">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
+    <label for="password">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
   </div>
   <button type="submit" class="btn btn-primary" name="login">Login</button>
