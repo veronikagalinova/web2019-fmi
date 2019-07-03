@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<form method="post" action="">
+<form method="post" action="" class="container">
 <div class="form-group">
     <label for="exampleInputEmail1">Username</label>
     <input type="email" class="form-control" id="email" name="username" placeholder="Enter username">

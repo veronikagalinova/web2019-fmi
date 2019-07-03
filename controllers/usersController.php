@@ -1,8 +1,9 @@
 <?php
-class agendaController extends Controller
+class usersController extends Controller
 {
     function register()
     {
+        echo 'entered register in users controller';
         require(ROOT . 'models/User.php');
         $user = new User();
         
@@ -35,6 +36,8 @@ class agendaController extends Controller
 
     function login()
     {
+        echo 'entered LOGIN in users controller';
+
         require(ROOT . 'models/User.php');
         $userModel = new User();
         if(isset($_POST['login'])) {

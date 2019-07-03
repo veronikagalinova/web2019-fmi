@@ -1,0 +1,21 @@
+Projects
+-Created by "admin"
+-"Admin" adds other users to Projects
+
+
+
+2.Users
+    2.1.Admin
+     - Create project
+     - Assign user to project
+     - ......
+    
+    2.2 User
+     - Create agenda for today  (only if there is not been created already for today)
+     - View agenda history for his project (all users records)
+     - View agenda for today for his project (all users records)
+     - View agenda history for his project (only his records)
+
+FIX:
+
+-move bootstrap cdn/js to layout page
