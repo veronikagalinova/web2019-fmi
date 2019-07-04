@@ -1,4 +1,5 @@
 <?php
+session_start();
 class usersController extends Controller
 {
     function register()
@@ -42,7 +43,7 @@ class usersController extends Controller
     function login()
     {
         // Do something if someone is already logged
-        session_start();
+        
 
         require(ROOT . 'models/User.php');
         $userModel = new User();
@@ -70,7 +71,12 @@ class usersController extends Controller
     }
     function logout()
     {
-        unset($_SESSION['username']);
+        if ( isset( $_COOKIE[session_name()] ) )
+        {
+            unset($_COOKIE[session_name()]);
+            setcookie( session_name(), '', -1, '/' );
+        }
+        session_unset();
         session_destroy();
         header("Location: " . WEBROOT . "users/login");
     }
