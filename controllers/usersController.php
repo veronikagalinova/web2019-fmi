@@ -55,8 +55,15 @@ class usersController extends Controller
             } else {
                 if ($password == $user->password) {
                     $_SESSION['username'] = $user->username;
-                    header("Location: " . WEBROOT . "agenda/index");
-                    // header('Location: dashboard.php');
+
+                    if($user->username == 'admin') {
+                        //echo "admin === admin";
+                        header("Location: " . WEBROOT . "admin/users");
+                    }
+                    else
+                    {
+                        header("Location: " . WEBROOT . "agenda/index");
+                    }
                 }
             }
         }
