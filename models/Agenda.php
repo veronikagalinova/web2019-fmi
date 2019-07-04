@@ -1,6 +1,7 @@
 <?php
 include_once '../config/DbConnector.php';
 
+
 class Agenda
 {
 
@@ -53,5 +54,42 @@ class Agenda
         } catch (PDOException $exception) {
             echo ['error' => $exception->getMessage()];
         }
+    }
+
+    public function getById($id)
+    {
+        $sql = "SELECT * FROM agenda WHERE id =" . $id;
+        echo $sql;
+        $req = DbConnector::getConnection()->prepare($sql);
+        $req->execute();
+        return $req->fetch();
+    }
+
+    public function getTodaysAgendaForUser($user)
+    {
+        try {
+            $today = date("Y-m-d");
+            $query = "SELECT * FROM agenda WHERE DATE(`date`) = " . "'$today'" . " AND username=" . "'$user'";
+            $stmt = DbConnector::getConnection()->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $exception) {
+            echo ['error' => $exception->getMessage()];
+        }
+    }
+
+    public function edit($id, $username, $yesterday, $today, $problems)
+    {
+        echo $id;
+        $sql = "UPDATE agenda SET yesterday = :yesterday, today = :today, problems = :problems WHERE id = :id";
+        $req = DbConnector::getConnection()->prepare($sql);
+        return $req->execute([
+            'id' => $id,
+            // 'username' => $username,
+            // 'date' => date("Y-m-d"),
+            'yesterday' => $yesterday,
+            'today' => $today,
+            'problems' => $problems
+        ]);
     }
 }

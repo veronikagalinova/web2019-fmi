@@ -45,7 +45,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/daily-scrum/users/logout">Logout<span class="sr-only">(current)</span></a>
                 </li>
+
+
             </ul>
+
+            <!-- <?php
+                    if (isset($_SESSION['username'])) {
+                        echo '<ul class="nav navbar-nav navbar-right"><li class="nav-item active"><a class="nav-link" href="#">Hello, '
+                            . $_SESSION["username"] . '</a></li></ul>';
+                    } else {
+                        //put login form or include here.
+                    }
+                    ?> -->
         </div>
     </nav>
 

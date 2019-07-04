@@ -34,6 +34,31 @@ class agendaController extends Controller
         $this->render("create");
     }
 
+    function edit()
+    {
+        $agenda = new Agenda();
+        $user = $_SESSION['username'];
+        $d["agenda"] = $agenda->getTodaysAgendaForUser($user);
+
+        if ($d["agenda"] == false) {
+            header("Location: " . WEBROOT . "agenda/index");
+            exit;
+        } else {
+            // if (isset($_POST["edit-agenda"])) {
+
+            // }
+            $this->set($d);
+            $this->render("edit");
+            if (isset($_POST["edit-agenda"])) {
+                echo 'edit';
+                print_r($_POST);
+                if ($agenda->edit($d["agenda"]['id'], $user, $_POST["yesterday"], $_POST["today"], $_POST["problems"])) {
+                    header("Location: " . WEBROOT . "agenda/index");
+                }
+            }
+        }
+    }
+
     function myHistory()
     {
         $agenda = new Agenda();
