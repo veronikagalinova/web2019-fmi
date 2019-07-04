@@ -35,5 +35,6 @@
                                                                                                                     }
 
                                                                                                                     ?>><b>+</b> Add agenda for today</button>
+    <button onclick="window.location.href='/daily-scrum/agenda/edit/'" class="btn btn-primary btn-xs pull-right"><b> </b> Edit today's agenda</button>
 
 </div>
