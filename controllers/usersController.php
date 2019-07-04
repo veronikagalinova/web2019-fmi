@@ -57,7 +57,6 @@ class usersController extends Controller
                     $_SESSION['username'] = $user->username;
 
                     if($user->username == 'admin') {
-                        //echo "admin === admin";
                         header("Location: " . WEBROOT . "admin/users");
                     }
                     else

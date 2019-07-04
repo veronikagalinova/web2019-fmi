@@ -11,13 +11,13 @@
         <?php
 
         foreach ($users as $u) {
-            echo '<form>';
+            echo '<form method="post" action="">';
             echo '<tr>';
             //todo make username readonly
-            echo "<td>" . $u['username'] . "</td>";
+            echo '<td><input type="text" name="user" class="form-control-plaintext" value="' . $u['username'] . '" readonly></td>';
             //echo "<td>" . $u['project_name'] . "</td>";
             echo '<td>';
-            echo '<select class="form-control" name="projects">';
+            echo '<select class="form-control" name="project">';
             //foreach project
                 foreach($projects as $p) {
                     if($p['name']===$u['project_name']) 
@@ -32,7 +32,7 @@
                 }
             echo '</select>';
             echo '</td>';
-            echo '<td><button class="btn btn-primary btn-xs pull-right"><b>+</b> Update project</button></td>';
+            echo '<td><input type="submit" class="btn btn-primary btn-xs pull-right" name="edit-user-project" value="Update project" ></td>';
             echo "</tr>";
             echo '</form>';
         }
