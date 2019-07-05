@@ -32,9 +32,13 @@
                 }
             echo '</select>';
             echo '</td>';
-            echo '<td><input type="submit" class="btn btn-primary btn-xs pull-right" name="edit-user-project" value="Update project" ></td>';
+            echo '<td><input type="submit" id="update-project-button" class="btn btn-primary btn-xs pull-right" name="edit-user-project" value="Update project" ></td>';
             echo "</tr>";
             echo '</form>';
+           
+        }
+        if(isset($updatedProject)){
+            echo '<div class="alert alert-success" role="alert">Project has been successfully updated</div>';
         }
         ?>
     </table>

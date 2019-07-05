@@ -21,9 +21,16 @@ class User
         $req->execute();
         return $req->fetchObject();
     }
+    // public function getAllUsers()
+    // {
+    //     $sql = "SELECT * FROM users";
+    //     $req = DbConnector::getConnection()->prepare($sql);
+    //     $req->execute();
+    //     return $req->fetchAll();
+    // }
     public function getAllUsers()
     {
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users WHERE NOT username = 'admin'";
         $req = DbConnector::getConnection()->prepare($sql);
         $req->execute();
         return $req->fetchAll();

@@ -30,7 +30,7 @@
     </table>
     <button onclick="window.location.href='/daily-scrum/agenda/create/'" class="btn btn-primary btn-xs pull-right" <?php
                                                                                                                     $agenda = new Agenda();
-                                                                                                                    if ($agenda->getTodaysAgenda() == true) {
+                                                                                                                    if ($agenda->getTodaysAgendaForUser($_SESSION['username']) == true) {
                                                                                                                         echo 'disabled=true';
                                                                                                                     }
 
