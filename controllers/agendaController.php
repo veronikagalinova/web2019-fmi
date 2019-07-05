@@ -21,14 +21,21 @@ class agendaController extends Controller
         }
 
         if (isset($_POST["create-agenda"])) {
-            if ($agenda->create(
-                $user,
-                date('Y-m-d'),
-                $_POST["yesterday"],
-                $_POST["today"],
-                $_POST["problems"]
-            )) {
-                header("Location: " . WEBROOT . "agenda/index");
+            if(!isset($_POST["yesterday"]) || !isset($_POST["today"]))
+            {
+                echo '<div class="alert alert-danger" role="alert"> Please provide all the required fields</div>';
+            }
+            else
+            {
+                if ($agenda->create(
+                    $user,
+                    date('Y-m-d'),
+                    $_POST["yesterday"],
+                    $_POST["today"],
+                    $_POST["problems"]
+                )) {
+                    header("Location: " . WEBROOT . "agenda/index");
+                }
             }
         }
         $this->render("create");
@@ -50,10 +57,15 @@ class agendaController extends Controller
             $this->set($d);
             $this->render("edit");
             if (isset($_POST["edit-agenda"])) {
-                echo 'edit';
-                print_r($_POST);
-                if ($agenda->edit($d["agenda"]['id'], $user, $_POST["yesterday"], $_POST["today"], $_POST["problems"])) {
-                    header("Location: " . WEBROOT . "agenda/index");
+                if(!isset($_POST["yesterday"]) || !isset($_POST["today"]))
+                {
+                    echo '<div class="alert alert-danger" role="alert">Please provide all the required fields</div>';
+                }
+                else 
+                {
+                    if ($agenda->edit($d["agenda"]['id'], $user, $_POST["yesterday"], $_POST["today"], $_POST["problems"])) {
+                        header("Location: " . WEBROOT . "agenda/index");
+                    }
                 }
             }
         }
