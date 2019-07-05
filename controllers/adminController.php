@@ -31,7 +31,7 @@ class adminController extends Controller
     {
         if(!isset($_SESSION['username']) || $_SESSION['username']!='admin')
         {
-            header("Location: " . WEBROOT . "agenda/index");
+            header("Location: " . WEBROOT . "users/login");
         }
         else
         {
@@ -39,6 +39,7 @@ class adminController extends Controller
             if(isset($_POST['create-project']) && isset($_POST["project-name"]))
             {
                 $projectModel->create($_POST["project-name"],$_POST["project-description"]);
+                header("Location: " . WEBROOT . "admin/users");
             }
             $this->render("create");
         }
