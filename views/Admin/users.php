@@ -38,7 +38,7 @@
            
         }
         if(isset($updatedProject)){
-            echo '<div class="alert alert-success" role="alert">Project updated</div>';
+            echo '<div class="alert alert-success" role="alert">Project has been successfully updated</div>';
         }
         ?>
     </table>
