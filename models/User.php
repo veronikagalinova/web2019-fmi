@@ -28,4 +28,17 @@ class User
         $req->execute();
         return $req->fetchAll();
     }
+    public function updateUserProject($username, $project) {
+        try {
+            $sql = "UPDATE users SET project_name = :project WHERE username = :username";
+            $req = DbConnector::getConnection()->prepare($sql);
+            $req->execute([
+                'project' => $project,
+                'username' => $username
+            ]);
+            return $req->fetchObject();
+        } catch (PDOException $exception) {
+            echo $exception->getMessage();
+        }
+    }
 }

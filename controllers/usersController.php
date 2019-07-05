@@ -1,4 +1,5 @@
 <?php
+session_start();
 class usersController extends Controller
 {
     function register()
@@ -11,22 +12,22 @@ class usersController extends Controller
             $username = $_POST['username'];
             $password = $_POST['password'];
             $email = $_POST['email'];
-            $errMsg = '';
+            $errMsg = "";
             if ($username == '') {
-                $errMsg = 'Enter username';
+                $errMsg = $errMsg . "\n Enter username";
             }
 
             if ($password == '') {
-                $errMsg = 'Enter password';
+                $errMsg =$errMsg . "\n Enter password";
             }
             if ($email == '') {
-                $errMsg = 'Enter email';
+                $errMsg = $errMsg . "\n Enter email";
             }
-            if ($errMsg == '') {
+            if ($errMsg == "") {
                 //somewhat of a valid form
                 //TODO: need to check for existing user
                 if ($user->getUserByUsername($username) == true) {
-                    echo '<h1>User already exists</h1>';
+                    echo '<div class="alert alert-danger" role="alert"> User already exists</div>';
                     //header("Location: " . WEBROOT . "users/login");  this works
                 } else {
                     $user->create($username, $password, $email);
@@ -35,6 +36,10 @@ class usersController extends Controller
                 }
                 //TODO: maybe think about how to login him right here
             }
+            else
+            {
+                echo '<div class="alert alert-danger" role="alert">' . $errMsg . '</div>';
+            }
         }
         $this->render("register");
     }
@@ -42,7 +47,7 @@ class usersController extends Controller
     function login()
     {
         // Do something if someone is already logged
-        session_start();
+        
 
         require(ROOT . 'models/User.php');
         $userModel = new User();
@@ -51,12 +56,21 @@ class usersController extends Controller
             $password = $_POST['password'];
             $user = $userModel->getUserByUsername($username);
             if ($user == false) {
-                $errMsg = "User $username not found.";
+                echo '<div class="alert alert-danger" role="alert">Invalid username or password</div>';
             } else {
                 if ($password == $user->password) {
                     $_SESSION['username'] = $user->username;
-                    header("Location: " . WEBROOT . "agenda/index");
-                    // header('Location: dashboard.php');
+                    if($user->username == 'admin') {
+                        header("Location: " . WEBROOT . "admin/users");
+                    }
+                    else
+                    {
+                        header("Location: " . WEBROOT . "agenda/index");
+                    }
+                }
+                else 
+                {
+                    echo '<div class="alert alert-danger" role="alert">Invalid username or password</div>';
                 }
             }
         }
@@ -64,7 +78,12 @@ class usersController extends Controller
     }
     function logout()
     {
-        unset($_SESSION['username']);
+        if ( isset( $_COOKIE[session_name()] ) )
+        {
+            unset($_COOKIE[session_name()]);
+            setcookie( session_name(), '', -1, '/' );
+        }
+        session_unset();
         session_destroy();
         header("Location: " . WEBROOT . "users/login");
     }
