@@ -19,7 +19,7 @@ class adminController extends Controller
                 $projectName = $_POST["project"];
                 $user = $_POST["user"];
                 $userModel->updateUserProject($user,$projectName);
-                //TODO: needs notification
+                $data['updatedProject']=true;
             }
             $data['users'] = $userModel->getAllUsers();
             $data['projects'] = $projectModel->getAllProjects();
@@ -36,10 +36,25 @@ class adminController extends Controller
         else
         {
             $projectModel = new Project();
-            if(isset($_POST['create-project']) && isset($_POST["project-name"]))
+            if(isset($_POST['create-project']))
             {
-                $projectModel->create($_POST["project-name"],$_POST["project-description"]);
-                header("Location: " . WEBROOT . "admin/users");
+                if(isset($_POST["project-name"]))
+                {
+                    //check if project exists
+                    if($projectModel->getProjectById($_POST["project-name"])==false)
+                    {
+                        $projectModel->create($_POST["project-name"],$_POST["project-description"]);
+                        echo '<div class="alert alert-success" role="alert">Project created successfully</div>';
+                    }
+                    else 
+                    {
+                        echo '<div class="alert alert-danger" role="alert">Project with that name already exists</div>';
+                    }
+                }
+                else 
+                {
+                    echo '<div class="alert alert-danger" role="alert">Project name is required</div>';
+                }
             }
             $this->render("create");
         }

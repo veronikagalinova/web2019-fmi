@@ -8,13 +8,13 @@
             <label for="yesterday">Yesterday:</label>
             <input type="text" class="form-control" id="yesterday" value="<?php
                                                                             echo  $agenda['yesterday'];
-                                                                            ?>" name="yesterday">
+                                                                            ?>" name="yesterday" required>
         </div>
         <div class="form-group">
             <label for="today">Today:</label>
             <input type="text" class="form-control" id="today" name="today" value="<?php
                                                                                     echo  $agenda['today'];
-                                                                                    ?>">
+                                                                                    ?>" required>
         </div>
         <div class="form-group">
             <label for="problems">Problems:</label>

@@ -14,7 +14,7 @@ class Project
     }
     public function getProjectById($name)
     {
-        $sql = "SELECT * FROM project WHERE name =" . $name;
+        $sql = "SELECT * FROM project WHERE name =" . "'$name'";
         $req = DbConnector::getConnection()->prepare($sql);
         $req->execute();
         return $req->fetch();
