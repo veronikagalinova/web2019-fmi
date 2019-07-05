@@ -6,6 +6,10 @@ class agendaController extends Controller
 {
     function index()
     {
+        if(!isset($_SESSION['username']))
+        {
+            header("Location: " . WEBROOT . "users/login");
+        }
         $agenda = new Agenda();
         $data['agenda'] = $agenda->getTodaysAgenda();
         $this->set($data);
@@ -14,6 +18,10 @@ class agendaController extends Controller
 
     function create()
     {
+        if(!isset($_SESSION['username']))
+        {
+            header("Location: " . WEBROOT . "users/login");
+        }
         $agenda = new Agenda();
         $user =  $_SESSION['username'];
         if ($agenda->getTodaysAgendaForUser($user) == true) {
@@ -43,6 +51,10 @@ class agendaController extends Controller
 
     function edit()
     {
+        if(!isset($_SESSION['username']))
+        {
+            header("Location: " . WEBROOT . "users/login");
+        }
         $agenda = new Agenda();
         $user = $_SESSION['username'];
         $d["agenda"] = $agenda->getTodaysAgendaForUser($user);
@@ -73,6 +85,10 @@ class agendaController extends Controller
 
     function myHistory()
     {
+        if(!isset($_SESSION['username']))
+        {
+            header("Location: " . WEBROOT . "users/login");
+        }
         $agenda = new Agenda();
         $user =  $_SESSION['username'];
         $data['myHistory'] = $agenda->getHistoryForUser($user);
