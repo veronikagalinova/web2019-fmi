@@ -48,7 +48,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/daily-scrum/admin/users">Admin-Users<span class="sr-only">(current)</span></a>
                 </li>
-
+                <li class="nav-item active">
+                    <a class="nav-link" href="/daily-scrum/admin/create">Create Project<span class="sr-only">(current)</span></a>
+                </li>
             </ul>
 
             <!-- <?php

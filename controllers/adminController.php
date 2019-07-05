@@ -6,18 +6,15 @@ class adminController extends Controller
 {
     function users()
     {
-        echo $_SESSION['username'];
         //check if the user is admin
         if(!isset($_SESSION['username']) || $_SESSION['username']!='admin')
         {
-            echo "vlqzoh";
-            header("Location: " . WEBROOT . "agenda/index");
+            header("Location: " . WEBROOT . "users/login");
         }
         else 
         {
-            echo "vlqzoh v else";
-            $userModel = new User();
-            $projectModel = new Project();
+          $userModel = new User();
+          $projectModel = new Project();
             if(isset($_POST["edit-user-project"]) && isset($_POST["project"]) && isset($_POST["user"])) {
                 $projectName = $_POST["project"];
                 $user = $_POST["user"];
@@ -28,6 +25,22 @@ class adminController extends Controller
             $data['projects'] = $projectModel->getAllProjects();
             $this->set($data);
             $this->render("users");
+        }
+    }
+    function create() 
+    {
+        if(!isset($_SESSION['username']) || $_SESSION['username']!='admin')
+        {
+            header("Location: " . WEBROOT . "agenda/index");
+        }
+        else
+        {
+            $projectModel = new Project();
+            if(isset($_POST['create-project']) && isset($_POST["project-name"]))
+            {
+                $projectModel->create($_POST["project-name"],$_POST["project-description"]);
+            }
+            $this->render("create");
         }
     }
 }
