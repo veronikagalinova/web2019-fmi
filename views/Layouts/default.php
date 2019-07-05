@@ -1,3 +1,9 @@
+<?php   
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }  
+?>
 <!doctype html>
 
 <head>
@@ -22,12 +28,30 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<?php if (!isset($_SESSION['username'])): ?>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="#">Daily scrum</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/daily-scrum/users/register">Register <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/daily-scrum/users/login">Login<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<?php elseif (isset($_SESSION['username']) && $_SESSION['username']!='admin'): ?>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Daily scrum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -37,11 +61,20 @@
                     <a class="nav-link" href="/daily-scrum/agenda/myHistory">My history <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/daily-scrum/users/register">Register <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/daily-scrum/users/logout">Logout<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/daily-scrum/users/login">Login<span class="sr-only">(current)</span></a>
-                </li>
+            </ul>
+        </div>
+    </nav>
+<?php else: ?>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Daily scrum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/daily-scrum/users/logout">Logout<span class="sr-only">(current)</span></a>
                 </li>
@@ -52,17 +85,9 @@
                     <a class="nav-link" href="/daily-scrum/admin/create">Create Project<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-
-            <!-- <?php
-                    if (isset($_SESSION['username'])) {
-                        echo '<ul class="nav navbar-nav navbar-right"><li class="nav-item active"><a class="nav-link" href="#">Hello, '
-                            . $_SESSION["username"] . '</a></li></ul>';
-                    } else {
-                        //put login form or include here.
-                    }
-                    ?> -->
         </div>
     </nav>
+<?php endif; ?>
 
     <main role="main" class="container">
 
