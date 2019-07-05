@@ -16,7 +16,7 @@ class agendaController extends Controller
     {
         $agenda = new Agenda();
         $user =  $_SESSION['username'];
-        if ($agenda->getTodaysAgenda() == true) {
+        if ($agenda->getTodaysAgendaForUser($user) == true) {
             header("Location: " . WEBROOT . "agenda/index");
         }
 
