@@ -12,22 +12,22 @@ class usersController extends Controller
             $username = $_POST['username'];
             $password = $_POST['password'];
             $email = $_POST['email'];
-            $errMsg = '';
+            $errMsg = "";
             if ($username == '') {
-                $errMsg = 'Enter username';
+                $errMsg = $errMsg . "\n Enter username";
             }
 
             if ($password == '') {
-                $errMsg = 'Enter password';
+                $errMsg =$errMsg . "\n Enter password";
             }
             if ($email == '') {
-                $errMsg = 'Enter email';
+                $errMsg = $errMsg . "\n Enter email";
             }
-            if ($errMsg == '') {
+            if ($errMsg == "") {
                 //somewhat of a valid form
                 //TODO: need to check for existing user
                 if ($user->getUserByUsername($username) == true) {
-                    echo '<h1>User already exists</h1>';
+                    echo '<div class="alert alert-danger" role="alert"> User already exists</div>';
                     //header("Location: " . WEBROOT . "users/login");  this works
                 } else {
                     $user->create($username, $password, $email);
@@ -35,6 +35,10 @@ class usersController extends Controller
                     header("Location: " . WEBROOT . "agenda/index");
                 }
                 //TODO: maybe think about how to login him right here
+            }
+            else
+            {
+                echo '<div class="alert alert-danger" role="alert">' . $errMsg . '</div>';
             }
         }
         $this->render("register");
@@ -52,11 +56,10 @@ class usersController extends Controller
             $password = $_POST['password'];
             $user = $userModel->getUserByUsername($username);
             if ($user == false) {
-                $errMsg = "User $username not found.";
+                echo '<div class="alert alert-danger" role="alert">Invalid username or password</div>';
             } else {
                 if ($password == $user->password) {
                     $_SESSION['username'] = $user->username;
-
                     if($user->username == 'admin') {
                         header("Location: " . WEBROOT . "admin/users");
                     }
@@ -64,6 +67,10 @@ class usersController extends Controller
                     {
                         header("Location: " . WEBROOT . "agenda/index");
                     }
+                }
+                else 
+                {
+                    echo '<div class="alert alert-danger" role="alert">Invalid username or password</div>';
                 }
             }
         }
