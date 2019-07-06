@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `daily_scrum`
 --
+CREATE DATABASE IF NOT EXISTS `daily_scrum` COLLATE utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`username`, `password`, `email`, `project_name`) VALUES
 ('lyuboslav', 'lyuboslav', 'lyuboslav@abv.bg', 'WEB'),
-('veronika', 'veronika', 'veronika@abv.bg', 'WEB');
+('veronika', 'veronika', 'veronika@abv.bg', 'WEB'),
+('admin', 'admin', 'admin@abv.bg', 'WEB');
 
 --
 -- Indexes for dumped tables

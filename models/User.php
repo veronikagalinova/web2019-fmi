@@ -21,13 +21,7 @@ class User
         $req->execute();
         return $req->fetchObject();
     }
-    // public function getAllUsers()
-    // {
-    //     $sql = "SELECT * FROM users";
-    //     $req = DbConnector::getConnection()->prepare($sql);
-    //     $req->execute();
-    //     return $req->fetchAll();
-    // }
+
     public function getAllUsers()
     {
         $sql = "SELECT * FROM users WHERE NOT username = 'admin'";
@@ -35,7 +29,8 @@ class User
         $req->execute();
         return $req->fetchAll();
     }
-    public function updateUserProject($username, $project) {
+    public function updateUserProject($username, $project)
+    {
         try {
             $sql = "UPDATE users SET project_name = :project WHERE username = :username";
             $req = DbConnector::getConnection()->prepare($sql);

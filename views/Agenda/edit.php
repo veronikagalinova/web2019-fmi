@@ -24,6 +24,6 @@
         </div>
         <button type="submit" name="edit-agenda" class="btn btn-primary">Submit</button>
     </form>
-    <button style="float: left" onclick="window.location.href='/daily-scrum/agenda/index'" class="btn btn-outline-secondary">
+    <button style="float: left" onclick="window.location.href='<?php echo WEBROOT . 'agenda/index' ?>'" class="btn btn-outline-secondary">
         Back</button>
 </div>

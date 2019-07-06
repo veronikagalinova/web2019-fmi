@@ -85,8 +85,6 @@ class Agenda
         $req = DbConnector::getConnection()->prepare($sql);
         return $req->execute([
             'id' => $id,
-            // 'username' => $username,
-            // 'date' => date("Y-m-d"),
             'yesterday' => $yesterday,
             'today' => $today,
             'problems' => $problems

@@ -18,26 +18,20 @@ class usersController extends Controller
             }
 
             if ($password == '') {
-                $errMsg =$errMsg . "\n Enter password";
+                $errMsg = $errMsg . "\n Enter password";
             }
             if ($email == '') {
                 $errMsg = $errMsg . "\n Enter email";
             }
             if ($errMsg == "") {
-                //somewhat of a valid form
-                //TODO: need to check for existing user
                 if ($user->getUserByUsername($username) == true) {
                     echo '<div class="alert alert-danger" role="alert"> User already exists</div>';
-                    //header("Location: " . WEBROOT . "users/login");  this works
                 } else {
                     $user->create($username, $password, $email);
                     $_SESSION['username'] = $user->username;
                     header("Location: " . WEBROOT . "agenda/index");
                 }
-                //TODO: maybe think about how to login him right here
-            }
-            else
-            {
+            } else {
                 echo '<div class="alert alert-danger" role="alert">' . $errMsg . '</div>';
             }
         }
@@ -46,9 +40,6 @@ class usersController extends Controller
 
     function login()
     {
-        // Do something if someone is already logged
-        
-
         require(ROOT . 'models/User.php');
         $userModel = new User();
         if (isset($_POST['login'])) {
@@ -60,16 +51,12 @@ class usersController extends Controller
             } else {
                 if ($password == $user->password) {
                     $_SESSION['username'] = $user->username;
-                    if($user->username == 'admin') {
+                    if ($user->username == 'admin') {
                         header("Location: " . WEBROOT . "admin/users");
-                    }
-                    else
-                    {
+                    } else {
                         header("Location: " . WEBROOT . "agenda/index");
                     }
-                }
-                else 
-                {
+                } else {
                     echo '<div class="alert alert-danger" role="alert">Invalid username or password</div>';
                 }
             }
@@ -78,10 +65,9 @@ class usersController extends Controller
     }
     function logout()
     {
-        if ( isset( $_COOKIE[session_name()] ) )
-        {
+        if (isset($_COOKIE[session_name()])) {
             unset($_COOKIE[session_name()]);
-            setcookie( session_name(), '', -1, '/' );
+            setcookie(session_name(), '', -1, '/');
         }
         session_unset();
         session_destroy();

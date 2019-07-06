@@ -28,13 +28,13 @@
         ?>
 
     </table>
-    <button onclick="window.location.href='/daily-scrum/agenda/create/'" class="btn btn-primary btn-xs pull-right" <?php
-                                                                                                                    $agenda = new Agenda();
-                                                                                                                    if ($agenda->getTodaysAgendaForUser($_SESSION['username']) == true) {
-                                                                                                                        echo 'disabled=true';
-                                                                                                                    }
+    <button onclick="window.location.href='<?php echo WEBROOT . 'agenda/create' ?>'" class="btn btn-primary btn-xs pull-right" <?php
+                                                                                                                                $agenda = new Agenda();
+                                                                                                                                if ($agenda->getTodaysAgendaForUser($_SESSION['username']) == true) {
+                                                                                                                                    echo 'disabled=true';
+                                                                                                                                }
 
-                                                                                                                    ?>><b>+</b> Add agenda for today</button>
-    <button onclick="window.location.href='/daily-scrum/agenda/edit/'" class="btn btn-primary btn-xs pull-right"><b> </b> Edit today's agenda</button>
+                                                                                                                                ?>><b>+</b> Add agenda for today</button>
+    <button onclick="window.location.href='<?php echo WEBROOT . 'agenda/edit' ?>'" class="btn btn-primary btn-xs pull-right"><b> </b> Edit today's agenda</button>
 
 </div>
